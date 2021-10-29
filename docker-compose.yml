@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  ntf_generator:
+    build: $PWD/
+    volumes:
+      - $PWD/:/app
+    environment:
+      ENV_VAR_1: ENV_VAR_1
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/ash
