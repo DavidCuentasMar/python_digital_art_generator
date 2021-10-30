@@ -29,7 +29,6 @@ class Controller:
         for x in combinations:
             if cls.check_hierarchy(x, layers_json_list):
                 collections.append(x)
-        print(len(collections))
         cls.build_images(collections)
 
     @classmethod
