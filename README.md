@@ -1,7 +1,22 @@
-layer from bottom to top, meaning that layer_0 is .... (show drawing)
+# Python Digital Art Generator
 
+The main goal of this repository is to generate all possible layers combinations 
+given by the user in order to get unique images
+
+## User Guide
+Steps:
+- Put all your images inside "resources" folder
+- Use config.js file to specify the order or hierarchy of the images
+- Run this command once you are inside docker image: python run.py main
+
+This script will save all unique images inside collections folder
+
+## Configuration of config.js file
+
+config.js file has the following structure. 
+```JSON
 {
-    "layers_config":{
+    "layers":{
         "layer_0":[
             "img_a",
             "img_b"
@@ -16,6 +31,11 @@ layer from bottom to top, meaning that layer_0 is .... (show drawing)
         ],
         "layer_3":[
             "img_e"
-        ]        
+        ]    
     }
 }
+```
+- The order of the layers are specified with the number associated. Example: layer_0 is the bottom and layer_3 is the top.
+- Layer_x is a list of the file names (excluding the extension file) that can be used as main image in that layer. Example: for layer_0 the script only will use img_a or img_b when it's creating the first layer
+- If you want to have more layers you can easily add them as another layer_x json array attribute
+- Note: :hearts: For now please use png images :pray: :sweat_smile:
