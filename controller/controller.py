@@ -27,7 +27,7 @@ class Controller:
         filenames_list = os.listdir(resources_path)
         filenames_list = list(map(lambda x: x.split(".")[0], filenames_list))
         collections = []
-        permutations = itertools.permutations(filenames_list, 4)
+        permutations = itertools.permutations(filenames_list, no_of_layers)
         for x in permutations:
             if cls.check_hierarchy(x, layers_json_list):
                 collections.append(x)
