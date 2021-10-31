@@ -36,12 +36,8 @@ class Controller:
     @classmethod
     def check_hierarchy(cls, possible_collection, layers_json_list):
         last_level = cls.get_image_level(possible_collection[0], layers_json_list)
-        print('Current collection: ', possible_collection)
         for x in range(1, len(possible_collection)):
             current_level = cls.get_image_level(possible_collection[x], layers_json_list)
-            print(last_level)
-            print(current_level)
-            print('----')
             if last_level >= current_level:
                 return False
             last_level = current_level
