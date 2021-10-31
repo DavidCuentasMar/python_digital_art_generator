@@ -18,9 +18,15 @@ def cli():
 
 
 @click.command()
-def main():
+@click.option(
+    '--output_name',
+    default="digital_art",
+    help='Name of the output images',
+    required=False
+)
+def main(output_name):
     """Main function"""
-    Controller.worker()
+    Controller.worker(output_name)
     os._exit(os.EX_OK)
 
 
