@@ -2,6 +2,7 @@ import os
 import logging
 import json
 import itertools
+import time
 from PIL import Image, ImageDraw
 
 class Controller:
@@ -31,7 +32,9 @@ class Controller:
         for x in permutations:
             if cls.check_hierarchy(x, layers_json_list):
                 collections.append(x)
+        
         cls.build_images(collections, output_name)
+        cls.build_metadata(collections, output_name)
 
     @classmethod
     def check_hierarchy(cls, possible_collection, layers_json_list):
@@ -58,5 +61,20 @@ class Controller:
             for img in collection:
                 image_to_merge = Image.open(f'resources/{img}.{resources_extension}')
                 nft_collection_image  = Image.alpha_composite(nft_collection_image,image_to_merge)
-            nft_collection_image.save(f'collections/{output_name}_no_{index}.png',"PNG")
+            nft_collection_image.save(f'collections/images/{output_name}_no_{index}.png',"PNG")
         logging.info(f'[STEP] building imagenes finished')
+
+    @classmethod
+    def build_metadata(cls, collections, output_name):
+        logging.info(f'[STEP] building metadata')
+        metadata_list = []
+        for index, collection in enumerate(collections):
+            metadata_obj = {
+                'name':f'{output_name}_{index}',
+                'creation_date':str(int(time.time())),
+                'properties':collection
+            }
+            json_object = json.dumps(metadata_obj)
+            with open(f'collections/metadata/{output_name}_{index}_metadata.json', 'w') as outfile:
+                outfile.write(json_object)
+        logging.info(f'[STEP] building metadata finished')
