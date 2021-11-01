@@ -1,12 +1,12 @@
 # Python Digital Art Generator
 
-The main goal of this repository is to generate all possible layers combinations 
+The main goal of this repository is to generate all possible layers permutations 
 given by the user in order to get unique images
 
 ## User Guide
 Steps:
 - Put all your images inside "resources" folder
-- Use config.js file to specify the order or hierarchy of the images
+- Use config.js file to specify order or hierarchy of the images
 - Run this command once you are inside docker image: python run.py main
 
 This script will save all unique images inside collections/images folder and the metadata
