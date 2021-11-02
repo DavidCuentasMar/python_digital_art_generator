@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  ntf_generator:
+  nft_generator:
     build: $PWD/
     volumes:
       - $PWD/:/app
