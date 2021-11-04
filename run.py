@@ -24,9 +24,15 @@ def cli():
     help='Name of the output images',
     required=False
 )
-def main(output_name):
+@click.option(
+    '--author',
+    default=None,
+    help='Name of the author',
+    required=False
+)
+def main(output_name,author):
     """Main function"""
-    Controller.worker(output_name)
+    Controller.worker(output_name,author)
     os._exit(os.EX_OK)
 
 
