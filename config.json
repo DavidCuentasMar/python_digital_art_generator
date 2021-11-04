@@ -15,5 +15,8 @@
         "layer_3":[
             "img_e"
         ]    
+    },
+    "custom_metadata":{
+        "author":"[AUTHOR_NAME]"
     }
 }
