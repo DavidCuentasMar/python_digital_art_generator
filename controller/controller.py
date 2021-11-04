@@ -20,6 +20,7 @@ class Controller:
         
         config_json = json.load(f)
         layers_json_list = config_json.get('layers')
+        custom_metadata = config_json.get('custom_metadata')
         no_of_layers = len(layers_json_list)
 
         logging.info(f'[INIT] No. of layers = {no_of_layers}')
@@ -34,7 +35,7 @@ class Controller:
                 collections.append(x)
         
         cls.build_images(collections, output_name)
-        cls.build_metadata(collections, output_name)
+        cls.build_metadata(collections, output_name,custom_metadata)
 
     @classmethod
     def check_hierarchy(cls, possible_collection, layers_json_list):
@@ -65,15 +66,18 @@ class Controller:
         logging.info(f'[STEP] building imagenes finished')
 
     @classmethod
-    def build_metadata(cls, collections, output_name):
+    def build_metadata(cls, collections, output_name, custom_metadata):
         logging.info(f'[STEP] building metadata')
         metadata_list = []
+        author = custom_metadata.get('author')
         for index, collection in enumerate(collections):
             metadata_obj = {
                 'name':f'{output_name}_{index}',
                 'creation_date':str(int(time.time())),
-                'properties':collection
+                'properties':collection,
             }
+            if author:
+                metadata_obj['author'] = author
             json_object = json.dumps(metadata_obj)
             with open(f'collections/metadata/{output_name}_{index}_metadata.json', 'w') as outfile:
                 outfile.write(json_object)
